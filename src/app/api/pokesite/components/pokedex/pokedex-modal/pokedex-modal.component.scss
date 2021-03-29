@@ -1,13 +1,28 @@
 @import '../../../../../../stylings/variables';
 
+.info {
+  font-size: x-large;
+}
+
 .modal-header {
   color: #fff;
 }
 
 .wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+}
+
+.pokemon-image-wrapper {
+  background-image: url('/assets/pokemon-background.png');
+  min-height: 234px;
+  min-width: 234px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
 }
 
 @each $firstColorName, $firstColorCode in $colors {

@@ -2,3 +2,8 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+html, body {
+  font-family: 'Grandstander';
+  font-size: medium;
+  background-color: #eee;
+}

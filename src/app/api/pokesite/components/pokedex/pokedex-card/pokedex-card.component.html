@@ -1,7 +1,9 @@
 <section *ngIf="pokemon; else pageSkeleton">
   <div class="card text-center" (click)="pokemonClick.emit(pokemon)">
     <div class="card-header" [ngClass]="getTitleBackground(pokemon?.type)">
-      #{{ pokemon?.id }} {{ pokemon?.name | pokemonName }} <fa-icon [icon]="pokemon?.favorite ? solidStar : hollowStar" (click)="favoritePokemon(pokemon); $event.stopPropagation()"></fa-icon>
+      #{{ pokemon?.id }}
+      {{ pokemon?.name | pokemonName }}
+      <fa-icon [icon]="pokemon?.favorite ? solidStar : hollowStar" (click)="favoritePokemon(pokemon); $event.stopPropagation()"></fa-icon>
     </div>
     <div class="card-body" *ngIf="!isPokemonImageWithError">
       <img [src]="pokemon?.image" alt="Pokémon picture" (load)="onImageLoad()" (error)="onImageError()" [ngClass]="isPokemonImageLoading ? 'isLoading' : ''">
