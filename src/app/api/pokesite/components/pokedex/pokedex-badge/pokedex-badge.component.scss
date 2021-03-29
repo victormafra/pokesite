@@ -1,0 +1,11 @@
+@import '../../../../../../stylings/variables';
+
+@each $firstColorName, $color in $colors {
+  .background-#{$firstColorName} {
+    background-color: $color;
+  }
+}
+
+.badge {
+  color: #fff;
+}

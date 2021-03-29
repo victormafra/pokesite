@@ -1,3 +1,5 @@
+@import '../../../../../../stylings/variables';
+
 img.isLoading, .empty-pokemon-text, .empty-pokemon-image {
   animation: loading 1.7s infinite linear;
   background: #dedfe1;
@@ -44,32 +46,6 @@ div:empty.card-header {
   display: flex;
 }
 
-.badge {
-  color: #fff;
-}
-
-$colors: (
-  normal: #a8a878,
-  fire: #f08030,
-  fighting: #c03028,
-  water: #6890f0,
-  flying: #a890f0,
-  grass: #78c850,
-  poison: #a040a0,
-  electric: #f8d030,
-  ground: #e0c068,
-  psychic: #f85888,
-  rock: #b8a038,
-  ice: #98d8d8,
-  bug: #a8b820,
-  dragon: #7038f8,
-  ghost: #705898,
-  dark: #705848,
-  steel: #b8b8d0,
-  fairy: #ee99ac,
-  unknown: #68a090
-);
-
 .card-header {
   color: white;
 }
@@ -86,9 +62,4 @@ $colors: (
   .background-#{$firstColorName} {
     background-color: $color;
   }
-}
-
-::ng-deep .favorited {
-  fill: black !important;
-  color: black;
 }

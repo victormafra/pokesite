@@ -5,6 +5,7 @@ import { PokedexCardComponent } from './pokedex/pokedex-card/pokedex-card.compon
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PokemonNamePipe } from '../pipes/pokemon-name.pipe';
+import { PokedexBadgeComponent } from './pokedex/pokedex-badge/pokedex-badge.component';
 
 
 
@@ -12,7 +13,8 @@ import { PokemonNamePipe } from '../pipes/pokemon-name.pipe';
   declarations: [
     PokedexListComponent,
     PokedexCardComponent,
-    PokemonNamePipe
+    PokemonNamePipe,
+    PokedexBadgeComponent
   ],
   imports: [
     CommonModule,
