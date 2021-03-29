@@ -5,9 +5,9 @@ export interface Pokemon {
   favorite: boolean;
   weight?: number;
   type?: string[];
+  hp?: number;
   height?: number;
   attack?: number;
-  deffense?: number;
-  health?: number;
+  defense?: number;
   speed?: number;
 }

@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { faStar as hollowStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { first } from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class PokedexCardComponent implements OnInit, OnChanges {
   hollowStar = hollowStar;
 
   @Input() pokemonUrl = '';
+  @Output() pokemonClick: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
 
   public pokemon: Pokemon | undefined;
   public isPokemonImageLoading = true;

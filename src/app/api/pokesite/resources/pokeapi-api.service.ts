@@ -22,6 +22,9 @@ export class PokeapiApiService {
         return {
           id: pokeApiPokemonEntity.id,
           name: pokeApiPokemonEntity.name,
+          hp: pokeApiPokemonEntity.stats.find((x: any) => x.stat.name === 'hp').base_stat,
+          attack: pokeApiPokemonEntity.stats.find((x: any) => x.stat.name === 'attack').base_stat,
+          defense: pokeApiPokemonEntity.stats.find((x: any) => x.stat.name === 'defense').base_stat,
           image: pokeApiPokemonEntity.sprites.front_default,
           type: pokeApiPokemonEntity.types?.map((pokemon: any) => pokemon.type.name),
           favorite: false

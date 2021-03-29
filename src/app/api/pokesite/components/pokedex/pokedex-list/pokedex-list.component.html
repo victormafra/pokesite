@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-2">
     <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center mb-3" *ngFor="let pokemon of pokemons?.results">
-      <pkm-pokedex-card [pokemonUrl]="pokemon.url"></pkm-pokedex-card>
+      <pkm-pokedex-card [pokemonUrl]="pokemon.url" (pokemonClick)="showPokemonModal($event)"></pkm-pokedex-card>
     </div>
   </div>
   <div class="row justify-content-center">

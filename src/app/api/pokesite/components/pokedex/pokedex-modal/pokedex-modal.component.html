@@ -1,0 +1,26 @@
+<div class="modal-header" [ngClass]="getTitleBackground(pokemon?.type)">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="$bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="wrapper">
+    <div class="pokemon-image-wrapper">
+      <img *ngIf="!isPokemonGifWithError" src="https://www.pkparaiso.com/imagenes/xy/sprites/animados/{{pokemon?.name}}.gif" (error)="onGifError()">
+      <img *ngIf="isPokemonGifWithError && !isPokemonImageWithError" [src]="pokemon?.image" alt="Pokémon picture" (error)="onImageError()">
+      <span *ngIf="isPokemonImageWithError">
+        Pokémon image not found!
+      </span>
+    </div>
+
+    <div class="info">
+      <span>No: {{pokemon?.id}}</span> <br>
+      <span>Name: {{pokemon?.name | pokemonName}}</span> <br>
+      Type:&nbsp;<pkm-pokedex-badge [type]="type" *ngFor="let type of pokemon?.type"></pkm-pokedex-badge> <br>
+      <span>HP: {{pokemon?.hp}}</span> <br>
+      <span>Attack: {{pokemon?.attack}}</span> <br>
+      <span>Defense: {{pokemon?.defense}}</span> <br>
+    </div>
+  </div>
+</div>

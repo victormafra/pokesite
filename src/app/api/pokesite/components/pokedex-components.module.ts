@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokedexListComponent } from './pokedex/pokedex-list/pokedex-list.component';
-import { PokedexCardComponent } from './pokedex/pokedex-card/pokedex-card.component';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PokemonNamePipe } from '../pipes/pokemon-name.pipe';
 import { PokedexBadgeComponent } from './pokedex/pokedex-badge/pokedex-badge.component';
+import { PokedexCardComponent } from './pokedex/pokedex-card/pokedex-card.component';
+import { PokedexListComponent } from './pokedex/pokedex-list/pokedex-list.component';
+import { PokedexModalComponent } from './pokedex/pokedex-modal/pokedex-modal.component';
 
 
 
@@ -14,7 +15,8 @@ import { PokedexBadgeComponent } from './pokedex/pokedex-badge/pokedex-badge.com
     PokedexListComponent,
     PokedexCardComponent,
     PokemonNamePipe,
-    PokedexBadgeComponent
+    PokedexBadgeComponent,
+    PokedexModalComponent
   ],
   imports: [
     CommonModule,

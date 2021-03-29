@@ -1,9 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { PaginationComponent } from 'ngx-bootstrap/pagination';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
 import { PokemonBase } from '../../../interfaces/pokemon-base.interface';
+import { Pokemon } from '../../../interfaces/pokemon.interface';
 import { RequisitionWrapper } from '../../../interfaces/requisition-wrapper.interface';
+import { PokemonNamePipe } from '../../../pipes/pokemon-name.pipe';
 import { PokeapiApiService } from '../../../resources/pokeapi-api.service';
+import { PokedexModalComponent } from '../pokedex-modal/pokedex-modal.component';
 
 @Component({
   selector: 'pkm-pokedex-list',
@@ -11,14 +14,16 @@ import { PokeapiApiService } from '../../../resources/pokeapi-api.service';
   styleUrls: ['./pokedex-list.component.scss']
 })
 export class PokedexListComponent implements OnInit, AfterViewInit {
-  @ViewChild(PaginationComponent)
-  protected pagination: PaginationComponent | undefined;
+  bsModalRef: BsModalRef | undefined;
+
   public pokemons: RequisitionWrapper<PokemonBase> | undefined;
   public itemsPerPage = 12;
   public totalItems = 0;
 
   constructor(
-    protected $pokeapiService: PokeapiApiService
+    protected $pokeapiService: PokeapiApiService,
+    protected $modalService: BsModalService,
+    protected $pokemonNamePipe: PokemonNamePipe
   ) { }
 
   ngOnInit(): void { }
@@ -34,6 +39,14 @@ export class PokedexListComponent implements OnInit, AfterViewInit {
 
   pageChanged(pageInfo: {itemsPerPage: number, page: number}): void {
     this.getPokemons(pageInfo.itemsPerPage, (pageInfo.page - 1) * pageInfo.itemsPerPage);
+  }
+
+  showPokemonModal(pokemon: Pokemon): void {
+    const initialState = {
+      title: `${this.$pokemonNamePipe.transform(pokemon.name)}`,
+      pokemon
+    };
+    this.bsModalRef = this.$modalService.show(PokedexModalComponent, {initialState});
   }
 
 }

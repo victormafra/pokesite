@@ -1,0 +1,25 @@
+@import '../../../../../../stylings/variables';
+
+.modal-header {
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@each $firstColorName, $firstColorCode in $colors {
+  @each $secondColorName, $secondColorCode in $colors {
+    .gradient-#{$firstColorName}-#{$secondColorName} {
+      background-image: linear-gradient(140deg, $firstColorCode 0%, $secondColorCode 100%);
+    }
+  }
+}
+
+@each $firstColorName, $color in $colors {
+  .background-#{$firstColorName} {
+    background-color: $color;
+  }
+}
