@@ -1,0 +1,32 @@
+<section *ngIf="pokemon; else pageSkeleton">
+  <div class="card text-center">
+    <div class="card-header" [ngClass]="getTitleBackground(pokemon?.type)">
+      #{{ pokemon?.id }} {{ pokemon?.name | pokemonName }} <fa-icon [icon]="pokemon?.favorite ? solidStar : hollowStar" (click)="favoritePokemon(pokemon)"></fa-icon>
+    </div>
+    <div class="card-body" *ngIf="!isPokemonImageWithError">
+      <img [src]="pokemon?.image" alt="Pokémon picture" (load)="onImageLoad()" (error)="onImageError()" [ngClass]="isPokemonImageLoading ? 'isLoading' : ''">
+    </div>
+    <div class="card-body" *ngIf="isPokemonImageWithError">
+      Pokémon image not found!
+    </div>
+    <div class="card-footer text-muted">
+      <section class="type-wrapper">
+        Type:&nbsp;<span class="badge background-{{type}}" *ngFor="let type of pokemon?.type">{{type}}</span>
+      </section>
+    </div>
+  </div>
+</section>
+
+<ng-template #pageSkeleton>
+  <div class="card text-center">
+    <div class="card-header">
+      <div class="empty-pokemon-text"></div>
+    </div>
+    <div class="card-body">
+      <div class="empty-pokemon-image"></div>
+    </div>
+    <div class="card-footer text-muted">
+      <div class="empty-pokemon-text"></div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center mb-3" *ngFor="let pokemon of pokemons?.results">
+      <app-pokedex-card [pokemonUrl]="pokemon.url"></app-pokedex-card>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <pagination
+      [totalItems]="totalItems"
+      [itemsPerPage]="itemsPerPage"
+      [maxSize]="5"
+      [rotate]="false"
+      [boundaryLinks]="true"
+      (pageChanged)="pageChanged($event)">
+    </pagination>
+  </div>
+</div>
