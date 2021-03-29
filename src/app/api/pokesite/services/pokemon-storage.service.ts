@@ -9,20 +9,18 @@ const pokeKey = 'pokemons';
 export class PokemonStorageService {
 
   togglePokemonFavoriteStatus(name: string, url: string): void {
-    const favoritedPokemons = this.getAllFavoritedPokemons();
-    if (favoritedPokemons) {
+    const allFavoritedPokemons = this.getAllFavoritedPokemons();
+    if (allFavoritedPokemons) {
+      let favoritedPokemonsParsed: Array<PokemonBase> = JSON.parse(allFavoritedPokemons);
       if (this.isPokemonFavorite(name)) {
-        let favoritedPokemonsParsed: Array<PokemonBase> = JSON.parse(favoritedPokemons);
         favoritedPokemonsParsed = favoritedPokemonsParsed.filter(pokemon => pokemon.name !== name);
-        window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemonsParsed));
       } else {
-        const favoritedPokemonsParsed: Array<PokemonBase> = JSON.parse(favoritedPokemons);
         favoritedPokemonsParsed.push({name, url});
-        window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemonsParsed));
       }
+      window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemonsParsed));
     } else {
-      const favoritedPokemon: Array<PokemonBase> = [{name, url}];
-      window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemon));
+      const favoritedPokemons: Array<PokemonBase> = [{name, url}];
+      window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemons));
     }
   }
 
