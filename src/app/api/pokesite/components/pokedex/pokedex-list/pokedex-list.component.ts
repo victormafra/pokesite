@@ -6,7 +6,7 @@ import { RequisitionWrapper } from '../../../interfaces/requisition-wrapper.inte
 import { PokeapiApiService } from '../../../resources/pokeapi-api.service';
 
 @Component({
-  selector: 'app-pokedex-list',
+  selector: 'pkm-pokedex-list',
   templateUrl: './pokedex-list.component.html',
   styleUrls: ['./pokedex-list.component.scss']
 })

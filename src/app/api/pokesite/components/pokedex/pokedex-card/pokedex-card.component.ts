@@ -8,7 +8,7 @@ import { PokeapiApiService } from '../../../resources/pokeapi-api.service';
 import { PokemonStorageService } from '../../../services/pokemon-storage.service';
 
 @Component({
-  selector: 'app-pokedex-card',
+  selector: 'pkm-pokedex-card',
   templateUrl: './pokedex-card.component.html',
   styleUrls: ['./pokedex-card.component.scss'],
   animations : [
