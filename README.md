@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Published website
 
-If you wish to view this project without running it locally, it is online at https://pokesite.lucasmafra.dev.
+If you wish to view this project without running it locally, it is online at https://pokesite.lucasmafra.dev. This version is running with [Nginx](https://www.nginx.com) on a [DigitalOcean](https://www.digitalocean.com) droplet.
 
 ## Development server
 
