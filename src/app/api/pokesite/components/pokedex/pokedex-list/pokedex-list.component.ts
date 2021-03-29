@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { first } from 'rxjs/operators';
-import { PokemonBase } from '../../../interfaces/pokemon-base.interface';
+import { PokemonRef } from '../../../interfaces/pokemon-ref.interface';
 import { Pokemon } from '../../../interfaces/pokemon.interface';
 import { RequisitionWrapper } from '../../../interfaces/requisition-wrapper.interface';
 import { PokemonNamePipe } from '../../../pipes/pokemon-name.pipe';
@@ -16,7 +16,7 @@ import { PokedexModalComponent } from '../pokedex-modal/pokedex-modal.component'
 export class PokedexListComponent implements OnInit, AfterViewInit {
   bsModalRef: BsModalRef | undefined;
 
-  public pokemons: RequisitionWrapper<PokemonBase> | undefined;
+  public pokemons: RequisitionWrapper<PokemonRef> | undefined;
   public itemsPerPage = 12;
   public totalItems = 0;
 

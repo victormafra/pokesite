@@ -68,7 +68,7 @@ export class PokedexCardComponent implements OnInit, OnChanges {
   }
 
   favoritePokemon(pokemon: Pokemon): void {
-    this.$pokemonStorageService.togglePokemonFavoriteStatus(pokemon.id.toString(), this.pokemonUrl);
     pokemon.favorite = !pokemon.favorite;
+    this.$pokemonStorageService.savePokemonFavoriteStatus({name: pokemon.id.toString(), url: this.pokemonUrl});
   }
 }

@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
-import { PokemonBase } from '../interfaces/pokemon-base.interface';
+import { PokemonRef } from '../interfaces/pokemon-ref.interface';
 
-const pokeKey = 'pokemons';
+const POKEKEY = 'pokemons';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonStorageService {
-
-  togglePokemonFavoriteStatus(name: string, url: string): void {
-    const allFavoritedPokemons = this.getAllFavoritedPokemons();
-    if (allFavoritedPokemons) {
-      let favoritedPokemonsParsed: Array<PokemonBase> = JSON.parse(allFavoritedPokemons);
-      if (this.isPokemonFavorite(name)) {
-        favoritedPokemonsParsed = favoritedPokemonsParsed.filter(pokemon => pokemon.name !== name);
-      } else {
-        favoritedPokemonsParsed.push({name, url});
-      }
-      window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemonsParsed));
+  savePokemonFavoriteStatus(ref: PokemonRef): void {
+    let favoritedPokemons = this.getFavoritedPokemons();
+    if (this.pokemonFavoriteStatus(favoritedPokemons, ref.name)) {
+      favoritedPokemons = this.removeFromFavorites(favoritedPokemons, ref);
     } else {
-      const favoritedPokemons: Array<PokemonBase> = [{name, url}];
-      window.localStorage.setItem(pokeKey, JSON.stringify(favoritedPokemons));
+      favoritedPokemons = this.addToFavorites(favoritedPokemons, ref);
     }
+    window.localStorage.setItem(POKEKEY, JSON.stringify(favoritedPokemons));
   }
 
-  isPokemonFavorite(name: string | undefined): boolean {
-    return !!this.getFavoritePokemon(name);
+  isPokemonFavorite(name: string): boolean {
+    const favoritedPokemons = this.getFavoritedPokemons();
+    return this.pokemonFavoriteStatus(favoritedPokemons, name);
   }
 
-  getFavoritePokemon(name: string | undefined): any {
-    const favoritedPokemons = this.getAllFavoritedPokemons();
-    if (favoritedPokemons) {
-      const favoritedPokemonsParsed: Array<PokemonBase> = JSON.parse(favoritedPokemons);
-      return favoritedPokemonsParsed.find(poke => poke.name === name);
+  private addToFavorites(favoritedPokemons: Array<PokemonRef>, ref: PokemonRef): Array<PokemonRef> {
+    favoritedPokemons.push(ref);
+    return favoritedPokemons;
+  }
+
+  private removeFromFavorites(favoritedPokemons: Array<PokemonRef>, ref: PokemonRef): Array<PokemonRef> {
+    return favoritedPokemons.filter(poke => poke.name !== ref.name);
+  }
+
+  private pokemonFavoriteStatus(favoritedPokemons: Array<PokemonRef>, name: string): boolean {
+    return !!favoritedPokemons.find(poke => poke.name === name);
+  }
+
+  private getFavoritedPokemons(): Array<PokemonRef> {
+    const favoritedPokemonsRaw = window.localStorage.getItem(POKEKEY);
+    if (!favoritedPokemonsRaw) {
+      window.localStorage.setItem(POKEKEY, '[]');
+      return [];
     }
-    return undefined;
-  }
-
-  getAllFavoritedPokemons(): string | null {
-    return window.localStorage.getItem(pokeKey);
+    return JSON.parse(favoritedPokemonsRaw);
   }
 
 }
